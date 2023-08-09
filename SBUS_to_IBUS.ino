@@ -81,7 +81,7 @@ void loop() {
   delay(200);
 
 */
-   RecurringTask::interval(100, []() {
+   RecurringTask::interval(20, []() {
         for (int i = 0; i < 14; i++)
         {
             packet.channels[0] = (sbus.getChannel(1));
