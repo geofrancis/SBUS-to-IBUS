@@ -5,7 +5,7 @@
 
 // used pins
 #define SBUS_PIN 3   // D3
-
+int fs;
 
 SBUS sbus;
 
@@ -44,7 +44,7 @@ void send_packet(IBUS_Packet &p)
 void setup() {
   Serial.begin(115200);
 
-  sbus.begin(SBUS_PIN, sbusNonBlocking);  
+  sbus.begin(SBUS_PIN, sbusBlocking);  
 
 
     packet.header1 = 0x20;
@@ -56,24 +56,20 @@ void setup() {
     }
 
     packet.checksum = calc_checksum(packet);
+        Serial.print("Start ");
+    
 }
 
 
 
 void loop() {
 
-  
-  if (sbus.signalLossActive())
-    Serial.print("SIGNAL_LOSS ");
+  if (!sbus.waitFrame()) {
     
-  if (sbus.failsafeActive())
-    Serial.print("FAILSAFE");
-       
-   
-
-    RecurringTask::interval(20, []() {
-        for (int i = 0; i < 14; i++)
-        {
+    Serial.println("Timeout!");
+    
+  } else {
+    
             packet.channels[0] = (sbus.getChannel(1));
             packet.channels[1] = (sbus.getChannel(2));
             packet.channels[2] = (sbus.getChannel(3));
@@ -89,13 +85,11 @@ void loop() {
             packet.channels[12] = (sbus.getChannel(13));
             packet.channels[13] = (sbus.getChannel(14));
             packet.channels[14] = (sbus.getChannel(15));
-            packet.channels[15] = (sbus.getChannel(16));
+          
 
         }
         packet.checksum = calc_checksum(packet);        
         send_packet(packet);
-    });
-
 
 
 
