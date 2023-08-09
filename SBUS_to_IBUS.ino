@@ -41,9 +41,6 @@ void send_packet(IBUS_Packet &p)
 }
 
 
-
-
-
 void setup() {
   Serial.begin(115200);
 
@@ -65,23 +62,16 @@ void setup() {
 
 void loop() {
 
-/*  for (int i=1; i <= 18; ++i) {
-    Serial.print(sbus.getChannel(i)); 
-    Serial.print(" ");
-  }
   
   if (sbus.signalLossActive())
     Serial.print("SIGNAL_LOSS ");
     
   if (sbus.failsafeActive())
     Serial.print("FAILSAFE");
-    
-  Serial.println();
-    
-  delay(200);
+       
+   
 
-*/
-   RecurringTask::interval(20, []() {
+    RecurringTask::interval(20, []() {
         for (int i = 0; i < 14; i++)
         {
             packet.channels[0] = (sbus.getChannel(1));
@@ -102,11 +92,11 @@ void loop() {
             packet.channels[15] = (sbus.getChannel(16));
 
         }
-        packet.checksum = calc_checksum(packet);
+        packet.checksum = calc_checksum(packet);        
+        send_packet(packet);
     });
 
-    send_packet(packet);
 
-    delay(10);
+
 
 }
