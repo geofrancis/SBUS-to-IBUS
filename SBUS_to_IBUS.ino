@@ -71,20 +71,7 @@ void loop() {
     
             packet.channels[0] = (sbus.getChannel(1));
             packet.channels[1] = (sbus.getChannel(2));
-            packet.channels[2] = (sbus.getChannel(3));
-            packet.channels[3] = (sbus.getChannel(4));
-            packet.channels[4] = (sbus.getChannel(5));
-            packet.channels[5] = (sbus.getChannel(6));
-            packet.channels[6] = (sbus.getChannel(7));
-            packet.channels[7] = (sbus.getChannel(8));
-            packet.channels[8] = (sbus.getChannel(9));
-            packet.channels[9] = (sbus.getChannel(10));
-            packet.channels[10] = (sbus.getChannel(11));
-            packet.channels[11] = (sbus.getChannel(12));
-            packet.channels[12] = (sbus.getChannel(13));
-            packet.channels[13] = (sbus.getChannel(14));
-            packet.channels[14] = (sbus.getChannel(15));
-          
+                      
 
         }
         packet.checksum = calc_checksum(packet);        
