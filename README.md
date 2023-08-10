@@ -1,5 +1,5 @@
 # SBUS-to-IBUS
-Converts standard  SBUS to IBUS using arduino pro mini.
+Converts standard  SBUS to IBUS using arduino pro mini for use with hoverboards.
 
 
 
