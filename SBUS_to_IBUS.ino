@@ -1,6 +1,5 @@
 #include <sbus.h>
 #include <Arduino.h>
-#include <RecurringTask.h>
 
 
 // used pins
