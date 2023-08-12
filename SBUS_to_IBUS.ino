@@ -1,7 +1,5 @@
 #include <sbus.h>
 #include <Arduino.h>
-#include <RecurringTask.h>
-
 
 // used pins
 #define SBUS_PIN 3   // D3
