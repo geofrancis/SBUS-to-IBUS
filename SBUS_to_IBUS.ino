@@ -1,5 +1,6 @@
 #include <sbus.h>
 #include <Arduino.h>
+#include <RecurringTask.h>
 
 
 // used pins
@@ -7,6 +8,10 @@
 int fs;
 
 SBUS sbus;
+const int ledPin =  LED_BUILTIN;
+int ledState = LOW;
+
+
 
 
 typedef struct
@@ -44,7 +49,7 @@ void setup() {
   Serial.begin(115200);
 
   sbus.begin(SBUS_PIN, sbusBlocking);  
-
+ pinMode(ledPin, OUTPUT);
 
     packet.header1 = 0x20;
     packet.header2 = 0x40;
@@ -66,17 +71,27 @@ void loop() {
   if (!sbus.waitFrame()) {
     
     Serial.println("Timeout!");
-    
+    packet.channels[0] = (1500);
+    packet.channels[1] = (1500);
   } else {
     
             packet.channels[0] = (sbus.getChannel(1));
             packet.channels[1] = (sbus.getChannel(2));
-                      
+            
+          
 
         }
         packet.checksum = calc_checksum(packet);        
         send_packet(packet);
+        
+    if (ledState == LOW) {
+      ledState = HIGH;
+    } else {
+      ledState = LOW;
+    }
 
+    // set the LED with the ledState of the variable:
+    digitalWrite(ledPin, ledState);
 
 
 }
