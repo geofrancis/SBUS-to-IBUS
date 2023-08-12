@@ -1,6 +1,7 @@
 #include <sbus.h>
 #include <Arduino.h>
 
+
 // used pins
 #define SBUS_PIN 3   // D3
 int fs;
@@ -10,8 +11,6 @@ const int ledPin =  LED_BUILTIN;
 int ledState = LOW;
 
 
-
-
 typedef struct
 {
     uint8_t header1;
@@ -19,8 +18,8 @@ typedef struct
     uint16_t channels[14];
     uint16_t checksum;
 } IBUS_Packet;
-
 IBUS_Packet packet = {};
+
 
 uint16_t calc_checksum(IBUS_Packet &p)
 {
@@ -68,17 +67,15 @@ void loop() {
 
   if (!sbus.waitFrame()) {
     
-    Serial.println("Timeout!");
-    packet.channels[0] = (1500);
-    packet.channels[1] = (1500);
+            Serial.println("Timeout!");
+            
+            packet.channels[0] = (1500);
+            packet.channels[1] = (1500);
   } else {
     
             packet.channels[0] = (sbus.getChannel(1));
             packet.channels[1] = (sbus.getChannel(2));
-            
-          
-
-        }
+          }
         packet.checksum = calc_checksum(packet);        
         send_packet(packet);
         
