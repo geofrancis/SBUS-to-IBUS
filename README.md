@@ -1,5 +1,5 @@
 # SBUS-to-IBUS
-Converts standard  SBUS to IBUS using arduino pro mini for use with hoverboards.
+Converts standard  SBUS to IBUS using arduino 328p for use with hoverboards.
 
 
 does not respect failsafe flag, use no pulse or fixed value failsafe.
