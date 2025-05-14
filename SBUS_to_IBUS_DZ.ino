@@ -78,13 +78,13 @@ void loop() {
     if (leftoutputraw > (1500 + DZ)) { leftoutput = map(leftoutputraw, (1500 + DZ), 2000, 1500, 2000); }
     if (leftoutputraw < (1500 - DZ)) { leftoutput = map(leftoutputraw, (1500 - DZ), 1000, 1500, 1000); }
     if (leftoutputraw < (1500 + DZ) && leftoutputraw > (1500 - DZ)) {
-      leftoutput = 0;
+      leftoutput = 1500;
     }
 
     if (rightoutputraw > (1500 + DZ)) { rightoutput = map(rightoutputraw, (1500 + DZ), 2000, 0, 2000); }
     if (rightoutputraw < (1500 - DZ)) { rightoutput = map(rightoutputraw, (1500 - DZ), 1000, 0, 1000); }
     if (rightoutputraw < (1500 + DZ) && rightoutputraw > (1500 - DZ)) {
-      rightoutput = 0;
+      rightoutput = 1500;
     }
 
 
